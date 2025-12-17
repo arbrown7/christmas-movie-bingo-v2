@@ -78,15 +78,34 @@
           id="loveInterestOccupation">
         <h3>Conclusion</h3> <label for="howChristmasIsSaved">How Christmas is Saved?</label> <textarea
           id="howChristmasIsSaved"></textarea> <label for="lessonLearned">What is the Lesson Learned?</label>
-        <textarea id="lessonLearned"></textarea> <label for="movieRating">Your Rating</label>
-        <div class="rating-slider"> <input type="range" id="movieRating" name="movieRating" min="1" max="5" step="1"
-            value="1" />
-          <div class="rating-labels"></span> <span data-value="1">⭐</span> <span data-value="2">⭐⭐</span> <span
-              data-value="3">⭐⭐⭐</span> <span data-value="4">⭐⭐⭐⭐</span>
-            <span data-value="5">⭐⭐⭐⭐⭐</span>
+        <textarea id="lessonLearned"></textarea> 
+        <label for="movieRating">Your Rating</label>
+          <div class="star-wrap">
+            <input class="star" checked type="radio" value="-1" id="skip-star" name="star-radio" autocomplete="off" />
+            <label class="star-label hidden"></label>
+            <input class="star" type="radio" id="st-1" value="1" name="star-radio" autocomplete="off" />
+            <label class="star-label" for="st-1">
+              <div class="star-shape"></div>
+            </label>
+            <input class="star" type="radio" id="st-2" value="2" name="star-radio" autocomplete="off" />
+            <label class="star-label" for="st-2">
+              <div class="star-shape"></div>
+            </label>
+            <input class="star" type="radio" id="st-3" value="3" name="star-radio" autocomplete="off" />
+            <label class="star-label" for="st-3">
+              <div class="star-shape"></div>
+            </label>
+            <input class="star" type="radio" id="st-4" value="4" name="star-radio" autocomplete="off" />
+            <label class="star-label" for="st-4">
+              <div class="star-shape"></div>
+            </label>
+            <input class="star" type="radio" id="st-5" value="5" name="star-radio" autocomplete="off" />
+            <label class="star-label" for="st-5">
+              <div class="star-shape"></div>
+            </label>
           </div>
-          <div id="ratingOutput" class="rating-output">Not rated</div>
-        </div> <button type="submit">Log Movie</button>
+          <div id="result" class="rating-output">Not rated</div>
+      <button type="submit">Log Movie</button>
         <p id="ratingFeedback"></p>
       </form>
     </div>
