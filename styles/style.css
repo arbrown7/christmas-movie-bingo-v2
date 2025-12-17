@@ -112,7 +112,7 @@ header h1 {
   overflow: hidden;
   position: relative;
   width: 100%;
-  font-weight: 100;
+  font-weight: 600;
   color: var(--prompt-color);
 }
 
@@ -180,8 +180,8 @@ header h1 {
 
 .bingo-content button {
     padding: 10px 20px;
-    background-color: #007A33;
-    color: var(--button-color);
+    background-color: var(--button-color);
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
