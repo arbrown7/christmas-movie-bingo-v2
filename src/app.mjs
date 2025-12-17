@@ -23,9 +23,17 @@ if (newPromptsButton) {
 }
 
 import { closeBingoAlert } from './bingoCard.mjs';
+import { displayValue } from './movieForm.mjs';
 
 const bingoButton = document.querySelector('#bingoAlert button');
 bingoButton.addEventListener('click', closeBingoAlert);
 
-
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+  displayValue();
+  document.forms["movie-form"]["star-radio"].forEach((star) => {
+    star.addEventListener("change", () => {
+      displayValue();
+    });
+  });
+});
