@@ -9,6 +9,7 @@ export async function fetchBingoPrompts() {
 
 export async function fetchMovies() {
   const res = await fetch(`${API_BASE}/movies`, {
+    credentials: 'include'
   });
   return res.json();
 }
