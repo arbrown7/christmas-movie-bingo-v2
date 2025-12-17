@@ -58,3 +58,13 @@ function getFormattedTimestamp() {
 function clean(value) {
     return value?.toString().trim();
 }
+
+export function displayValue() {
+  starVal = document.forms["movie-form"]["star-radio"].value;
+  if (starVal == -1) {
+    document.getElementById("result").innerText = "Not Chosen";
+  } else {
+    document.getElementById("result").innerText =
+      starVal + " out of 5";
+  }
+}
