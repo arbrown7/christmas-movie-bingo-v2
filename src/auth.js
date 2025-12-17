@@ -10,7 +10,7 @@ logoutButton.addEventListener('click', async () => {
   window.location.reload();
 });
 
-async function checkAuth() {
+/*async function checkAuth() {
   try {
     const res = await fetch('https://christmas-movie-bingo-api.onrender.com/api/user', {
       credentials: 'include'
@@ -31,4 +31,4 @@ async function checkAuth() {
   }
 }
 
-checkAuth();
+checkAuth();*/
