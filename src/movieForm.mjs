@@ -9,17 +9,17 @@ export function setupMovieForm() {
 
         const movieData = {
             timestamp: getFormattedTimestamp(),
-            title: form.movieTitle.value,
-            mainCharacterName: form.mainCharacterName.value,
-            mainCharacterOccupation: form.mainCharacterOccupation.value,
-            mainCharacterHometown: form.mainCharacterHometown.value,
-            mainCharacterCurrentCity: form.mainCharacterCurrentCity.value,
-            mainCharacterLoveInterest: form.mainCharacterLoveInterest.value,
-            loveInterestOccupation: form.loveInterestOccupation.value,
-            conflict: form.conflict.value,
-            howChristmasIsSaved: form.howChristmasIsSaved.value,
-            lessonLearned: form.lessonLearned.value,
-            movieRating: parseInt(form.movieRating.value)
+            title: clean(form.movieTitle.value),
+            mainCharacterName: clean(form.mainCharacterName.value),
+            mainCharacterOccupation: clean(form.mainCharacterOccupation.value),
+            mainCharacterHometown: clean(form.mainCharacterHometown.value),
+            mainCharacterCurrentCity: clean(form.mainCharacterCurrentCity.value),
+            mainCharacterLoveInterest: clean(form.mainCharacterLoveInterest.value),
+            loveInterestOccupation: clean(form.loveInterestOccupation.value),
+            conflict: clean(form.conflict.value),
+            howChristmasIsSaved: clean(form.howChristmasIsSaved.value),
+            lessonLearned: clean(form.lessonLearned.value),
+            movieRating: Number(form.movieRating.value)
         };
 
         try {
@@ -27,24 +27,32 @@ export function setupMovieForm() {
             feedback.textContent = 'Movie logged!';
             form.reset();
         } catch (err) {
-            feedback.textContent = 'Failed to log movie.';
-            console.error(err);
+            if (err.status === 401) {
+                feedback.textContent = 'Please log in to submit a movie.';
+            } else {
+                feedback.textContent = 'Failed to log movie.';
+            }
         }
+
     });
 }
 
 function getFormattedTimestamp() {
-  const now = new Date();
+    const now = new Date();
 
-  const pad = (num) => num.toString().padStart(2, '0');
+    const pad = (num) => num.toString().padStart(2, '0');
 
-  const month = pad(now.getMonth() + 1); // Months are 0-indexed
-  const day = pad(now.getDate());
-  const year = now.getFullYear();
+    const month = pad(now.getMonth() + 1); // Months are 0-indexed
+    const day = pad(now.getDate());
+    const year = now.getFullYear();
 
-  const hours = pad(now.getHours());
-  const minutes = pad(now.getMinutes());
-  const seconds = pad(now.getSeconds());
+    const hours = pad(now.getHours());
+    const minutes = pad(now.getMinutes());
+    const seconds = pad(now.getSeconds());
 
-  return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
+    return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
+}
+
+function clean(value) {
+    return value?.toString().trim();
 }
