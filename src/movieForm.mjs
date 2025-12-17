@@ -24,13 +24,15 @@ export function setupMovieForm() {
 
         try {
             await submitMovie(movieData);
-            feedback.textContent = 'Movie logged!';
+            alert('Movie submitted!');
             form.reset();
         } catch (err) {
-            if (err.status === 401) {
-                feedback.textContent = 'Please log in to submit a movie.';
+            if (err.message === 'NOT_LOGGED_IN') {
+                alert('You must log in with Google to submit a movie.');
+                window.location.href =
+                    'https://christmas-movie-bingo-api.onrender.com/auth/google';
             } else {
-                feedback.textContent = 'Failed to log movie.';
+                alert('Something went wrong submitting the movie.');
             }
         }
 

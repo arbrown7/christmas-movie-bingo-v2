@@ -22,11 +22,14 @@ export async function submitMovie(movieData) {
     body: JSON.stringify(movieData),
   });
 
+  if (res.status === 401) {
+    throw new Error('NOT_LOGGED_IN');
+  }
+
   if (!res.ok) {
-    const error = new Error('Request failed');
-    error.status = res.status;
-    throw error;
+    throw new Error('SUBMIT_FAILED');
   }
 
   return res.json();
 }
+
