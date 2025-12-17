@@ -1,77 +1,132 @@
-/* --- Basic layout --- */
+:root{
+  --body-color: #C8E9E1;
+  --card-color: #fff;
+  --grid-item-color: #FBF6EA;
+  --button-color: #FF4D06;
+  --marked-color: #FF4D06;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #C8E9E1;
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  background: var(--body-color);
 }
 
 header {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 100;
+  margin-bottom: 1rem;
+  color: var(--button-color);
+}
+
+#authContainer {
   display: flex;
-  justify-content: space-between; /* title left, auth right */
-  align-items: center;
-  padding: 20px;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 #authContainer button {
-  margin-left: 10px;
-  padding: 8px 12px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  border-radius: 4px;
+  background: white;
   border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 100;
 }
 
 #logoutButton {
   display: none; /* hidden by default, shown when logged in */
 }
 
+#authContainer button:hover {
+  transform: translateY(-2px);
+}
+
 .bingo-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    height: 80vh; /* Fill the viewport height */
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+/* --- Bingo Card --- */
+.bingo-card {
+  flex: 1;
+  min-width: 100px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .bingo-card,
 .movie-form {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: var(--card-color);
+  height: fit-content;
 }
 
-/* --- Bingo card --- */
-.bingo-card {
-    flex: 2;
+.bingo-card h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 100;
+  color: var(--button-color);
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 5px;
-    margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  aspect-ratio: 1;
 }
 
 .grid-item {
-    display: flex;
-    background: #eee;
-    padding: 15px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    user-select: none;
-    line-height: 1.35;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    font-size: clamp(0.75rem, 1.8vw, 1rem);
+  aspect-ratio: 1;
+  background: var(--grid-item-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.3rem;
+  font-size: 0.7rem;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  font-weight: 100;
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
 }
 
 .grid-item.marked {
-    outline: 2.5px solid #FF4D06;
+  font-weight: 300;
+  outline: 2.5px solid var(--marked-color);
+}
+
+.grid-item.free-space {
+  font-weight: 100;
+  font-size: 0.8rem;
+  outline: 2.5px solid var(--marked-color);
 }
 
 /* --- Bingo Alert --- */
@@ -146,107 +201,192 @@ header {
     }
 }
 
+/* --- Buttons --- */
+.button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.button-container button {
+  color: white;
+  background-color: var(--button-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  font-weight: 100;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.button-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: #D63C04;
+}
+
 /* --- Movie form --- */
 .movie-form {
-    flex: 1;
+  flex: 1;
+  min-width: 300px;
+  padding: 1.5rem;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.movie-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 100;
+  color: var(--button-color);
+}
+
+.movie-form h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 100;
 }
 
 .movie-form label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  font-weight: 100;
 }
 
-.movie-form input,
-.movie-form textarea,
-.movie-form select {
-    width: 100%;
-    margin-top: 4px;
-    padding: 6px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+.movie-form input[type="text"],
+.movie-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
-.movie-form button {
-    margin-top: 12px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    background: #28a745;
-    color: white;
-    cursor: pointer;
+.movie-form input[type="text"]:focus,
+.movie-form textarea:focus {
+  outline: none;
+}
+
+.movie-form textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
 .rating-slider {
-  margin-top: 8px;
+  margin: 1rem 0;
 }
 
 .rating-slider input[type="range"] {
   width: 100%;
-  margin: 6px 0;
+  margin: 0.5rem 0;
 }
 
 .rating-labels {
   display: flex;
   justify-content: space-between;
-  font-size: 1.1rem;
-  cursor: pointer;
+  margin-top: 0.5rem;
 }
 
 .rating-labels span {
-  opacity: 0.4;
-  transition: opacity 0.2s;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.rating-labels span.active {
-  opacity: 1;
+.rating-labels span:hover {
+  transform: scale(1.2);
 }
 
 .rating-output {
-  margin-top: 4px;
-  font-size: 0.9rem;
-  color: #555;
+  text-align: center;
+  font-weight: 100;
+  color: #c41e3a;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
 }
 
-/* --- Previously watched movies --- */
-.movie-list {
-    margin: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
+.movie-form button[type="submit"] {
+  width: 100%;
+  background-color: var(--button-color);
+  color: white;
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 100;
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+  border: none;
 }
 
-/* --- Buttons --- */
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px; /* Space between the two buttons */
-    padding: 10px;
+.movie-form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.button-container button {
-    padding: 10px 20px;
-    background-color: #FF4D06;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    font-family: 'Roboto', sans-serif;
+#ratingFeedback {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #1a472a;
 }
 
-.button-container button:hover {
-    background-color: #D63C04;
-}
-
-/* --- Responsive --- */
+/* Mobile Responsive */
 @media (max-width: 768px) {
-    .bingo-container {
-        flex-direction: column;
-        align-items: center;
-    }
+  header h1 {
+    font-size: 1.5rem;
+  }
 
-    .movie-form {
-        max-width: 100%;
-    }
+  .bingo-container {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .bingo-card,
+  .movie-form {
+    min-width: 100%;
+    height: fit-content;
+  }
+
+  .bingo-card {
+    max-height: 600px;
+  }
+
+  .grid-item {
+    font-size: 0.6rem;
+    padding: 0.2rem;
+  }
+
+  .grid-item.free-space {
+    font-size: 0.7rem;
+  }
+
+  .bingo-content {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .bingo-content h2 {
+    font-size: 2rem;
+  }
+
+  .bingo-content p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-item {
+    font-size: 0.5rem;
+    padding: 0.1rem;
+  }
+
+  .button-container button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
 }
