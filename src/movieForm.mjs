@@ -60,7 +60,7 @@ function clean(value) {
 }
 
 export function displayValue() {
-  starVal = document.forms["movie-form"]["star-radio"].value;
+  const starVal = document.forms["movie-form"]["star-radio"].value;
   if (starVal == -1) {
     document.getElementById("result").innerText = "Not Chosen";
   } else {
